@@ -1,8 +1,10 @@
-import React from 'react'
 
+import './style.css'
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <footer>
+        <span> &copy; 2024 Produzido por Bruno Adller</span>
+    </footer>
   )
 }
 

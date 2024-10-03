@@ -16,3 +16,61 @@ body{
    flex-direction: column;
    min-height: 100vh;
 }
+@keyframes is-rotating {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+@media screen and (max-width: 580px) {
+    header ul{
+        display: none;
+       
+    }
+    header .openMenu{
+        display: block;
+        cursor: pointer;
+
+    }
+    .modal{
+        width: 200px;
+    }
+    header .openMenu img {
+       width: 35px;
+       height: 35px
+    }
+    main .main-container .search-container{
+        flex-direction: column;
+        justify-content: center;
+    }
+    main .main-container .search-container input{
+        width: 95%;
+    }
+    main .main-container .search-container button{
+        width: 95%;
+    }
+    main .main-container .result-container {
+        flex-direction:column;
+
+    }
+    
+}
+
+@media screen and (max-width: 450px) {
+    main .main-container .result-container h1{
+        font-size: 30px;
+    }
+    main .main-container .result-container img{
+        width: 70%;
+    }
+}
+
+
+@media screen and (max-width: 300px) {
+    main .main-container .result-container h1{
+        font-size: 20px;
+    }
+    main .main-container .result-container img{
+        width: 70%;
+    }
+}
