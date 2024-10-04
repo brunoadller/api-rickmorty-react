@@ -20,11 +20,13 @@ export const DataContextProvider = ({children}: Props) =>  {
         .then(body => {
            setData(body.results)
          
-           console.log("depois fica vazio o console.")
+           
         }).catch((e) => {
          console.log("Erro\ na requisição: ", e)
         })
+       
       }, [])
+      
     return(
         <dataContext.Provider value={{data, setData}}>
             {children}

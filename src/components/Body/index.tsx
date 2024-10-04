@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './style.css'
 import img from '../../assets/rick.png'
 import { useInputContext } from '../../contexts/inputValueContext'
+
 type DataCharacterType  = {
   gender: string,
   id: number,
@@ -10,13 +11,24 @@ type DataCharacterType  = {
   species: string,
   status: string
 }
-const Body = () => {
+type Props = {
+  openModal: boolean
+  handleOpenModal: (b:boolean) => void
+}
+const Body = ({openModal, handleOpenModal}: Props) => {
   const inputCtx = useInputContext()
 
-  useEffect(() => {
-    console.log(inputCtx?.value)
-  },[inputCtx?.value])
+  const handleClickButton = () => {
+    if(inputCtx?.value.trim() === ""){
+      handleOpenModal(openModal)
+      setTimeout(() => {
+        handleOpenModal(!openModal)
+      },2000)
 
+    }else{
+
+    }
+  }
   return (
     <main>
        <div className="main-container">
@@ -26,7 +38,7 @@ const Body = () => {
              onChange={e => inputCtx?.setValue(e.target.value)}
              id="value"
              type="text" placeholder="Personagem..."/>
-             <button id="button">Buscar</button>
+             <button onClick={handleClickButton} id="button">Buscar</button>
            </div>
            
            <div  id="showResult" className="result-container">
@@ -39,7 +51,7 @@ const Body = () => {
                   src={img} alt="image-logo"/>
               </div>
            </div>
-           <div className="loading" id="loading"></div>
+          
            
        </div>
     </main>

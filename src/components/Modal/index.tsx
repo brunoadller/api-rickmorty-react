@@ -1,17 +1,24 @@
 import React from 'react'
+import './style.css'
+import imgClose from '../../assets/close.png'
 
-const Modal = () => {
+type Props = {
+  openModal: boolean
+}
+const Modal = ({openModal}: Props) => {
   return (
     <div 
+
+    style={{transform: `${openModal? 'tranlateX(300px)': 'tranlateX(0px)'}`, display: `${openModal? 'flex': 'none'}`}}
     id="modal" className="modal">
       
         <span 
         id="titleModal"
-        style={{ backgroundColor: 'blue', color: 'white', padding: '20px', fontSize: '16px' }}>Personagem não encontrado!</span>
+      >Personagem não encontrado!</span>
         <img 
         id="closeModal"
         style={{cursor: 'pointer'}}
-        src="./close.png" alt="hamburguer-menu"/>
+        src={imgClose} alt="hamburguer-menu"/>
     </div>
   )
 }

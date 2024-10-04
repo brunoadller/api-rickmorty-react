@@ -7,6 +7,7 @@ footer{
     background-color: #000;
     color: #fff;
     bottom: 0;
+    position: fixed;
     color: #57c97f;
     font-size: 14px;
 }
