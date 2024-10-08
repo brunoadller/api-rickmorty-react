@@ -1,8 +1,16 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
 import { getData } from "../data";
 
+type DataCharacterType  = {
+    gender: string,
+    id: number,
+    image: string,
+    name: string
+    species: string,
+    status: string
+  }
 type DataContextType = {
-    data: any[],
+    data: DataCharacterType[],
     setData:  Dispatch<SetStateAction<any[]>>
 } 
 
@@ -13,7 +21,7 @@ const dataContext = createContext<DataContextType | null>(null)
 type Props = {children: ReactNode}
 
 export const DataContextProvider = ({children}: Props) =>  {
-    const [data, setData] = useState<any[]>([])
+    const [data, setData] = useState<DataCharacterType[]>([])
     useEffect(() => {
         getData()
         .then(res => res.json())
