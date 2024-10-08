@@ -1,39 +1,43 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
-import { getData } from './data'
 import { DataContextProvider } from './contexts/dataContext'
 import Header from './components/Header'
 import Body from './components/Body'
 import Footer from './components/Footer'
 import { InputContextProvider } from './contexts/inputValueContext'
 import Modal from './components/Modal'
+import Menu from './components/Menu'
 
-type DataCharacterType  = {
-  gender: string,
-  id: number,
-  image: string,
-  name: string
-  species: string,
-  status: string
-}
+
 function App() {
   const [openModal, setOpenModal]  = useState(false)
-  const [dataCharacter, setDataCharacter] = useState<DataCharacterType[]>([])
-
+  const [isMessage, setIsMessage] = useState(false)
+  const [isOpenMenu, setIsOpenMenu] = useState(false)
 
   const handleOPenModal = (b:boolean) => {
-    console.log(b)
     setOpenModal(!b)
-    console.log(b)
+    
   }
-
+  const handleCloseModal = (b:boolean) => {
+     setOpenModal(!b)
+  }
+  const handleChangeMessage = (m:boolean) => {
+    setIsMessage(!m)
+  }
+  const handleOpenMenu = () => {
+    setIsOpenMenu(!isOpenMenu)
+  }
+  const handleCloseMenu = () => {
+    setIsOpenMenu(!isOpenMenu)
+  }
   return (
     <DataContextProvider>
       <InputContextProvider>
-        {openModal &&  <Modal openModal = {openModal} />}
-        <Header/>
-        <Body openModal = {openModal} handleOpenModal = {handleOPenModal}/>
+        {openModal &&  <Modal openModal = {openModal} isMessage = {isMessage}/>}
+        <Header handleOpenMenu = {handleOpenMenu}/>
+        <Body openModal = {openModal} handleOpenModal = {handleOPenModal}  handleChangeMessage = {handleChangeMessage}/>
         <Footer/>
+        <Menu isOpenMenu = {isOpenMenu} handleCloseMenu = {handleCloseMenu}/>
       </InputContextProvider>
     </DataContextProvider>
   )

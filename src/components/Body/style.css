@@ -1,4 +1,7 @@
-
+main{
+    flex: 1;
+  
+}
 main .main-container{
     width: 100%;
     height: 100%;
@@ -60,19 +63,38 @@ main .main-container .result-container .result-name-container{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     gap: 15px;
 }
 main .main-container .result-container .img-container{
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 30px;
+}
+main .main-container .result-container .img-container .description{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+main .main-container .result-container .img-container .description span{
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 10px;
+}
+main .main-container .result-container .img-container .description span p{
+    font-size: 20px;
+    font-weight: normal;
 }
 main .main-container .result-container h1{
     font-size: 50px;
 }
 main .main-container .result-container img{
-    width: 400px;
+    width: 300px;
     border-radius: 50%;
     box-shadow: 10px 20px 20px rgba(0, 0, 0, 0.5);
 
@@ -97,6 +119,34 @@ main .main-container .result-container img{
         flex-direction:column;
 
     }
+    main .main-container .result-container .img-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+    }
+    main .main-container .result-container .img-container .description{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    main .main-container .result-container .result-name-container h1{
+        font-size: 30px;
+    }
+    main .main-container .result-container .img-container .description span{
+        font-size: 25px;
+        font-weight: bold;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+    main .main-container .result-container .img-container .description span p{
+        font-size: 20px;
+        font-weight: normal;
+    }
     
 }
 @media screen and (max-width: 450px) {
@@ -105,6 +155,31 @@ main .main-container .result-container img{
     }
     main .main-container .result-container img{
         width: 70%;
+    }
+    main .main-container .result-container .img-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+    }
+    main .main-container .result-container .img-container .description{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    main .main-container .result-container .img-container .description span{
+        font-size: 20px;
+        font-weight: bold;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+    main .main-container .result-container .img-container .description span p{
+        font-size: 14px;
+        font-weight: normal;
     }
 }
 

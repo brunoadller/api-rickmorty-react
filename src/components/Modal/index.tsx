@@ -4,17 +4,19 @@ import imgClose from '../../assets/close.png'
 
 type Props = {
   openModal: boolean
+  isMessage: boolean
 }
-const Modal = ({openModal}: Props) => {
+const Modal = ({openModal, isMessage}: Props) => {
+  const message = ["Preencha com um nome por favor!", "Nome não encontrado!"]
   return (
     <div 
 
-    style={{transform: `${openModal? 'tranlateX(300px)': 'tranlateX(0px)'}`, display: `${openModal? 'flex': 'none'}`}}
+    style={{transform: `${openModal? 'translateX(0px)': 'translateX(300px)'}`, display: `${openModal? 'flex': 'none'}`}}
     id="modal" className="modal">
       
         <span 
         id="titleModal"
-      >Personagem não encontrado!</span>
+      >{isMessage ? message[1] : message[0]}</span>
         <img 
         id="closeModal"
         style={{cursor: 'pointer'}}

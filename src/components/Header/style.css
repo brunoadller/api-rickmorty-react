@@ -28,6 +28,14 @@ header ul li a{
 header ul li a:hover{
     opacity: 0.5;
 }
+.cardapio-menu{
+    display: none;
+ }
+ .cardapio-menu img{
+    width: 30px ;
+    height: 30px;
+    cursor: pointer;
+ }
 @media screen and (max-width: 580px) {
     header ul{
         display: none;
@@ -41,5 +49,8 @@ header ul li a:hover{
     header .openMenu img {
         width: 35px;
         height: 35px
+     }
+     .cardapio-menu{
+        display: flex;
      }
 }

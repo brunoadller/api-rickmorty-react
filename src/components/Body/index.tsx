@@ -3,6 +3,7 @@ import './style.css'
 import img from '../../assets/rick.png'
 import { useInputContext } from '../../contexts/inputValueContext'
 import { useDataContext } from '../../contexts/dataContext'
+import Loading from '../Loading'
 
 type DataCharacterType  = {
   gender: string,
@@ -15,8 +16,10 @@ type DataCharacterType  = {
 type Props = {
   openModal: boolean
   handleOpenModal: (b:boolean) => void
+  handleChangeMessage: (m:boolean) => void
 }
-const Body = ({openModal, handleOpenModal}: Props) => {
+const Body = ({openModal, handleOpenModal, handleChangeMessage}: Props) => {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [character, setCharacter] = useState<DataCharacterType[]>([])
   const dataCtx = useDataContext()
   const inputCtx = useInputContext()
@@ -30,10 +33,16 @@ const Body = ({openModal, handleOpenModal}: Props) => {
         handleOpenModal(openModal)
           setTimeout(() => {
           handleOpenModal(!openModal)
+          handleChangeMessage(true)
         },2000)
         inputCtx?.setValue('')
-       }else if(filterCharacter?.length !== undefined){
-         setCharacter(filterCharacter)
+       }else if(filterCharacter !== undefined){
+       
+         setIsLoading(!isLoading)
+         setTimeout(() => {
+          setCharacter(filterCharacter)
+          setIsLoading(false)
+         }, 3000)
          inputCtx?.setValue('')
        }
       
@@ -43,10 +52,12 @@ const Body = ({openModal, handleOpenModal}: Props) => {
       handleOpenModal(openModal)
       setTimeout(() => {
         handleOpenModal(!openModal)
+        handleChangeMessage(false)
       },2000)
 
     }
   }
+
   return (
     <main>
        <div className="main-container">
@@ -58,13 +69,25 @@ const Body = ({openModal, handleOpenModal}: Props) => {
              type="text" placeholder="Personagem..."/>
              <button onClick={handleClickButton} id="button">Buscar</button>
            </div>
-           {character.length > 0 && character.map((item, index) => {
+           {isLoading && <Loading />}
+           {character.length > 0 && !isLoading && character.map((item, index) => {
               return (
                 <div key={index} id="showResult" className="result-container">
                 <div id="result-name-container" className="result-name-container">
-                    <h1 id="name">{item.name}</h1>
+                      <h1 id="name">{item.name}</h1>
                 </div>
                 <div id="img-container" className="img-container">
+                     <div className='description'>
+                       <span>
+                         Gênero:<p>{item.gender}</p>
+                       </span>
+                       <span>
+                        Espécie:  <p>{item.species}</p>
+                       </span>
+                       <span>
+                        Status: <p> {item.status}</p>
+                       </span>
+                     </div>
                     <img
                     id="imgCharacter"
                     src={item.image} alt="image-logo"/>
@@ -72,7 +95,7 @@ const Body = ({openModal, handleOpenModal}: Props) => {
              </div>
               )
            })}
-           {character.length === 0 &&
+           {character.length === 0 && !isLoading &&
            
            <div  id="showResult" className="result-container">
               <div id="result-name-container" className="result-name-container">
