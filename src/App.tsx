@@ -14,12 +14,12 @@ function App() {
   const [isMessage, setIsMessage] = useState(false)
   const [isOpenMenu, setIsOpenMenu] = useState(false)
 
-  const handleOPenModal = (b:boolean) => {
-    setOpenModal(!b)
+  const handleOPenModal = () => {
+    setOpenModal(!openModal)
     
   }
-  const handleCloseModal = (b:boolean) => {
-     setOpenModal(!b)
+  const handleCloseModal = () => {
+     setOpenModal(!openModal)
   }
   const handleChangeMessage = (m:boolean) => {
     setIsMessage(!m)
@@ -33,11 +33,12 @@ function App() {
   return (
     <DataContextProvider>
       <InputContextProvider>
-        {openModal &&  <Modal openModal = {openModal} isMessage = {isMessage}/>}
+        <Modal openModal = {openModal} isMessage = {isMessage} handleCloseModal = {handleCloseModal}/>
         <Header handleOpenMenu = {handleOpenMenu}/>
-        <Body openModal = {openModal} handleOpenModal = {handleOPenModal}  handleChangeMessage = {handleChangeMessage}/>
+        <Body openModal = {openModal} handleOpenModal = {handleOPenModal} handleCloseModal = {handleCloseModal} handleChangeMessage = {handleChangeMessage}/>
         <Footer/>
-        <Menu isOpenMenu = {isOpenMenu} handleCloseMenu = {handleCloseMenu}/>
+        <Menu 
+        isOpenMenu = {isOpenMenu} handleCloseMenu = {handleCloseMenu}/>
       </InputContextProvider>
     </DataContextProvider>
   )

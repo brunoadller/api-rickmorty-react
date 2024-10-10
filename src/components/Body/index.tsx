@@ -15,7 +15,7 @@ type DataCharacterType  = {
 }
 type Props = {
   openModal: boolean
-  handleOpenModal: (b:boolean) => void
+  handleOpenModal: () => void
   handleChangeMessage: (m:boolean) => void
 }
 const Body = ({openModal, handleOpenModal, handleChangeMessage}: Props) => {
@@ -28,12 +28,14 @@ const Body = ({openModal, handleOpenModal, handleChangeMessage}: Props) => {
     if(inputCtx?.value.trim() !== ""){
       console.log(dataCtx?.data)
       const filterCharacter: DataCharacterType[] | undefined = dataCtx?.data.filter(item =>  item.name.toLowerCase() === inputCtx?.value.trim().toLowerCase())
-
+        
        if(filterCharacter?.length === 0){
-        handleOpenModal(openModal)
+        
+       
           setTimeout(() => {
-          handleOpenModal(!openModal)
+        
           handleChangeMessage(true)
+          
         },2000)
         inputCtx?.setValue('')
        }else if(filterCharacter !== undefined){
@@ -46,12 +48,12 @@ const Body = ({openModal, handleOpenModal, handleChangeMessage}: Props) => {
          inputCtx?.setValue('')
        }
       
-
       
     }else{
-      handleOpenModal(openModal)
+    
+      
       setTimeout(() => {
-        handleOpenModal(!openModal)
+        
         handleChangeMessage(false)
       },2000)
 
